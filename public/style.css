@@ -160,3 +160,29 @@ label {
     box-shadow: 0.5px 2px 3px rgb(0, 0, 0, 0.5);
 }
 
+.toggle-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7985CB;
+    color: white;
+    padding: 5px;
+    border-radius: 0px 5px 5px 0px; /* Membentuk sudut kanan input */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-password i {
+    font-size: 16px;
+}
+
+.toggle-password:hover {
+    background-color: #6a74b8; /* Warna hover lebih gelap */
+}
+
+/* Atur posisi ikon dalam input */
+.input .toggle-password {
+    margin-left: -5px; /* Sesuaikan posisi agar lebih rapi */
+    margin-right: 10px; /* Jarak dari input jika diperlukan */
+}
+

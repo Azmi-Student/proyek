@@ -74,7 +74,7 @@
             <a href="#Fitur-fitur"><img src="./assets/img_navbar/icon_fitur.png" alt="Fitur"> FITUR</a>
             <a href="#artikel-seputar-ibu-anak"><img src="./assets/img_navbar/icon_artikel.png" alt="Artikel"> ARTIKEL</a>
             <a href="#footer"><img src="./assets/img_navbar/icon_footer.png" alt="Footer"> FOOTER</a>
-            <a href="bantuan.html"><img src="./assets/img_navbar/icon_bantuan.png" alt="Bantuan"> BANTUAN</a>
+            <a href="#"><img src="./assets/img_navbar/icon_bantuan.png" alt="Bantuan"> BANTUAN</a>
             <a href="#" class="notif">
                 <img src="./assets/img_navbar/icon_notif.png" alt="Notifikasi"> NOTIF
                 <span class="badge">1</span>
@@ -113,7 +113,7 @@
                 <a href="{{route('kalender')}}"><img src="./assets/img_fitur/kalender_kehamilan.png" alt="Kalender Kehamilan - Fitur">
                     <p>Kalender <br> Kehamilan</p>
                 </a>
-                <a href="{{route('jadwal.cu')}}"><img src="./assets/img_fitur/jadwal_cu.png" alt="Jadwal Check-Up - Fitur">
+                <a href="{{route('jadwal.index')}}"><img src="./assets/img_fitur/jadwal_cu.png" alt="Jadwal Check-Up - Fitur">
                     <p>Jadwal <br> Check-Up</p>
                 </a>
                 <a href="jadwal_im.php"><img src="./assets/img_fitur/jadwal_im.png" alt="Jadwal Imunisasi - Fitur">

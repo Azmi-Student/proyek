@@ -26,21 +26,25 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'name',
         'nik',
         'ttl',
         'gol_darah',
         'alamat',
         'email',
-        'username',
         'password',
         'no_telp'
     ];
 
     protected $casts = [
         'ttl' => 'date', // Pastikan kolom ttl diperlakukan sebagai tanggal
+        'password' => 'hashed',
+
     ];
     
+    protected $logoutOnPasswordReset = false;
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -74,4 +78,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function jadwalCheckup()
+{
+    return $this->hasMany(JadwalCheckup::class);
 }
+
+}   

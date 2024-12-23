@@ -75,3 +75,67 @@ document.addEventListener('click', () => {
 });
 
 
+document.querySelectorAll('.toggle-password').forEach(item => {
+  item.addEventListener('click', function () {
+      const targetId = this.getAttribute('data-target');
+      const input = document.getElementById(targetId);
+
+      if (input.type === 'password') {
+          input.type = 'text';
+      } else {
+          input.type = 'password';
+      }
+  });
+});
+
+
+document.getElementById('btn-ubah-password').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const passwordForm = document.getElementById('form-ubah-password');
+  const dataDiriForm = document.getElementById('form-data-diri');
+  const btnUbahPassword = document.getElementById('btn-ubah-password');
+  const btnDataDiri = document.getElementById('btn-data-diri');
+
+  // Tampilkan form ubah password dan sembunyikan form data diri
+  passwordForm.style.display = 'flex'; // Sesuaikan desain
+  dataDiriForm.style.display = 'none';
+
+  // Tambahkan class active pada tombol Ubah Password
+  btnUbahPassword.classList.add('active');
+
+  // Hapus class active dari tombol Data Diri
+  btnDataDiri.classList.remove('active');
+});
+
+document.getElementById('btn-data-diri').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const passwordForm = document.getElementById('form-ubah-password');
+  const dataDiriForm = document.getElementById('form-data-diri');
+  const btnUbahPassword = document.getElementById('btn-ubah-password');
+  const btnDataDiri = document.getElementById('btn-data-diri');
+
+  // Tampilkan form data diri dan sembunyikan form ubah password
+  dataDiriForm.style.display = 'flex'; // Sesuaikan desain
+  passwordForm.style.display = 'none';
+
+  // Tambahkan class active pada tombol Data Diri
+  btnDataDiri.classList.add('active');
+
+  // Hapus class active dari tombol Ubah Password
+  btnUbahPassword.classList.remove('active');
+});
+
+// Batal pada Data Diri
+document.getElementById('btn-batal').addEventListener('click', function () {
+    window.location.href = '/home'; // Navigasi ke halaman /home
+});
+
+// Batal pada Ubah Password
+document.getElementById('btn-ubah-password-batal').addEventListener('click', function () {
+    window.location.href = '/home'; // Navigasi ke halaman /home
+});
+
+
+

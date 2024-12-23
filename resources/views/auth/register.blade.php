@@ -75,7 +75,7 @@
                     <input type="text" id="alamat" name="alamat" placeholder="Address" class="form-input" required>
 
                     <div class="button-section">
-                        <button type="button" class="cancel-button" onclick="location.href='../index.php';">Cancel</button>
+                        <button type="button" class="cancel-button" onclick="prevStep()">Cancel</button>
                         <button type="button" class="next-button" onclick="nextStep()">Next</button>
                     </div>
                 <p class="page-indicator">1/2</p>

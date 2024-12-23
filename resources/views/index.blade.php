@@ -90,7 +90,7 @@
                 <a href="#artikel"><img src="./assets/img_navbar/icon_artikel.png" alt="Artikel"> ARTIKEL</a>
                 <a href="#FAQ"><img src="./assets/img_navbar/icon_bantuan.png" alt="Bantuan"> FAQ</a>
                 <a href="#footer"><img src="./assets/img_navbar/icon_footer.png" alt="Footer"> FOOTER</a>
-                <a class="btn-get-started" href="{{ route('register') }}">DAFTAR</a>
+                <a class="btn-get-started" href="{{ route('login') }}">DAFTAR</a>
 
             </div>
         </div>

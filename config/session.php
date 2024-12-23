@@ -213,5 +213,6 @@ return [
     */
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
+    'invalidate_sessions_on_password_change' => false,
 
 ];

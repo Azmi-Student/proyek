@@ -15,11 +15,8 @@
                     <img src="./assets/logo2.png" alt="MamaCare+ Logo">
                 </div>
                 <div class="menu">
-                    <div class="menu-item">Senin, 26 Oktober 2024</div>
-                    <div class="menu-item">Selasa, 27 Oktober 2024</div>
-                    <div class="menu-item">Rabu, 28 Oktober 2024</div>
-                    <div class="menu-item">Kamis, 29 Oktober 2024</div>
-                    <div class="menu-item">Jumat, 30 Oktober 2024</div>
+                    <!-- Tombol Tambah Data -->
+                    <button class="add-button" onclick="window.location.href='tambah_data.php'">Tambah Data</button>
                 </div>
             </div>
 
@@ -28,16 +25,26 @@
                 <!-- Informasi Tempat Check-Up -->
                 <div class="section">
                     <h2 class="section-title">Informasi Tempat Check-Up</h2>
+                    <p class="section-description">{{ Auth::user()->name }}</p>
                     <p class="section-description">Informasi mengenai lokasi check-up ibu:</p>
                     <div class="row">
-                        <div class="info-box">
-                            <h3>Klinik A</h3>
-                            <p>Alamat: Jl. Mawar No. 1</p>
-                        </div>
-                        <div class="info-box">
-                            <h3>Klinik B</h3>
-                            <p>Alamat: Jl. Melati No. 2</p>
-                        </div>
+                        <!-- Data akan diisi melalui PHP -->
+                        <?php
+                        // Contoh: Ambil data dari database
+                        // $data_tempat = []; // Hasil query database
+                        if (!empty($data_tempat)) {
+                            foreach ($data_tempat as $tempat) {
+                                echo "
+                                    <div class='info-box'>
+                                        <h3>{$tempat['nama']}</h3>
+                                        <p>Alamat: {$tempat['alamat']}</p>
+                                    </div>
+                                ";
+                            }
+                        } else {
+                            echo "<p>Belum ada data tempat check-up.</p>";
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -55,24 +62,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>26 Oktober 2024</td>
-                                <td>08:00</td>
-                                <td>Klinik A</td>
-                                <td class="status confirmed">Terkonfirmasi</td>
-                            </tr>
-                            <tr>
-                                <td>02 November 2024</td>
-                                <td>10:00</td>
-                                <td>Klinik B</td>
-                                <td class="status pending">Menunggu</td>
-                            </tr>
-                            <tr>
-                                <td>09 November 2024</td>
-                                <td>09:00</td>
-                                <td>Klinik A</td>
-                                <td class="status confirmed">Terkonfirmasi</td>
-                            </tr>
+                            <?php
+                            // Contoh: Ambil data jadwal dari database
+                            // $jadwal_checkup = []; // Hasil query database
+                            if (!empty($jadwal_checkup)) {
+                                foreach ($jadwal_checkup as $jadwal) {
+                                    echo "
+                                        <tr>
+                                            <td>{$jadwal['tanggal']}</td>
+                                            <td>{$jadwal['waktu']}</td>
+                                            <td>{$jadwal['lokasi']}</td>
+                                            <td class='status ".($jadwal['status'] == 'confirmed' ? 'confirmed' : 'pending')."'>
+                                                ".($jadwal['status'] == 'confirmed' ? 'Terkonfirmasi' : 'Menunggu')."
+                                            </td>
+                                        </tr>
+                                    ";
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>Belum ada jadwal check-up.</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -82,9 +91,18 @@
                     <h2 class="section-title">Foto & Dokumen</h2>
                     <p class="section-description">Dokumentasi atau file terkait check-up ibu:</p>
                     <div class="row">
-                        <div class="placeholder-box">Foto 1</div>
-                        <div class="placeholder-box">Foto 2</div>
-                        <div class="placeholder-box">Foto 3</div>
+                        <!-- Data akan diisi melalui PHP -->
+                        <?php
+                        // Contoh: Ambil data dokumen dari database
+                        // $foto_dokumen = []; // Hasil query database
+                        if (!empty($foto_dokumen)) {
+                            foreach ($foto_dokumen as $dokumen) {
+                                echo "<div class='placeholder-box'>{$dokumen['nama_file']}</div>";
+                            }
+                        } else {
+                            echo "<p>Belum ada foto atau dokumen.</p>";
+                        }
+                        ?>
                     </div>
                 </div>
 

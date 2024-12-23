@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -50,37 +52,43 @@ class userController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    // Validasi data
-    $validatedData = $request->validate([
-        'username' => 'required|string|max:255',
-        'fullname' => 'required|string|max:255',
-        'ttl' => 'nullable|date',
-        'gol_darah' => 'nullable|string|max:3',
-        'email' => 'required|email|unique:users,email,' . $id,
-        'no_telp' => 'nullable|string|max:15',
-        'nik' => 'nullable|string|max:16',
-        'alamat' => 'nullable|string|max:255',
-    ]);
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'username' => 'nullable|string|max:255',
+            'name' => 'nullable|string|max:255',
+            'ttl' => 'nullable|date',
+            'gol_darah' => 'nullable|string|max:3',
+            'email' => 'nullable|email|unique:users,email,' . $id,
+            'no_telp' => 'nullable|string|max:15',
+            'nik' => 'nullable|string|max:16',
+            'alamat' => 'nullable|string|max:255',
+            'old_password' => 'nullable|string', // Validasi password lama
+            'password' => 'nullable|string|min:3|confirmed', // Password baru dan konfirmasi
+        ]);
 
-    // Cari pengguna berdasarkan ID
-    $user = \App\Models\User::findOrFail($id);
+        // Temukan pengguna berdasarkan ID
+        $user = User::findOrFail($id);
 
-    // Perbarui data pengguna
-    $user->update([
-        'username' => $validatedData['username'],
-        'name' => $validatedData['fullname'],
-        'ttl' => $validatedData['ttl'],
-        'gol_darah' => $validatedData['gol_darah'],
-        'email' => $validatedData['email'],
-        'no_telp' => $validatedData['no_telp'],
-        'nik' => $validatedData['nik'],
-        'alamat' => $validatedData['alamat'],
-    ]);
+        // Jika password ingin diubah
+        if ($request->filled('password')) {
+            if (!Hash::check($request->input('old_password'), $user->password)) {
+                return redirect()->back()->withErrors(['old_password' => 'Password lama tidak cocok!']);
+            }
+        
+            // Perbarui password
+            $user->password = Hash::make($request->input('password')); // Hashing manual
+            $user->save(); // Pastikan perubahan tersimpan
+        
+            // Refresh sesi agar tetap login setelah perubahan password
+            auth()->login($user);
+        }
+        // Perbarui data lainnya
+        $user->update($validatedData);
 
-    // Redirect dengan pesan sukses
-    return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
-}
+        return redirect()->back()->with('success', 'Data berhasil diperbarui!');
+        
+    }
 
 
     /**

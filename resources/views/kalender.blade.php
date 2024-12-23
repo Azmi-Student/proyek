@@ -262,7 +262,7 @@ function generateCalendarGrid($month, $year, $selectedDate) {
 
             <!-- Menu Items -->
             <div class="menu">
-            <a class="home" href="{{route ("dashboard")}}"><img src="img_navbar/Icon Home.png" alt="Home"> HOME</a>
+            <a class="home" href="{{route ("home")}}"><img src="img_navbar/Icon Home.png" alt="Home"> HOME</a>
                 <a href="#"><img src="img_navbar/Icon Bantuan.png" alt="Bantuan"> BANTUAN</a>
                 <a href="#" class="notif">
                     <img src="img_navbar/Icon Notif.png" alt="Notifikasi"> NOTIF
